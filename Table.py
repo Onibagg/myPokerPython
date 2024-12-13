@@ -4,7 +4,7 @@ from Carte import Carte
 class Table:
     def __init__(self):
         self.paquet = self.creer_paquet()
-        self.cartes_communautaires = []
+        self.cartes_communes = []
         self.pot = 0
         self.joueurs = []
         self.mise_actuelle = 0
@@ -21,9 +21,9 @@ class Table:
         for joueur in self.joueurs:
             joueur.ajouter_cartes([self.paquet.pop(), self.paquet.pop()])
 
-    def ajouter_cartes_communautaires(self, nombre):
+    def ajouter_cartes_communes(self, nombre):
         for _ in range(nombre):
-            self.cartes_communautaires.append(self.paquet.pop())
+            self.cartes_communes.append(self.paquet.pop())
 
     def tour_de_mise(self):
         self.mise_actuelle = 0
@@ -98,7 +98,7 @@ class Table:
         self.pot = 0
 
     def nettoyer_table(self):
-        self.cartes_communautaires = []
+        self.cartes_communes = []
         for joueur in self.joueurs:
             joueur.main = []
             joueur.actif = joueur.jetons > 0
@@ -109,4 +109,4 @@ class Table:
             print(f"{joueur.nom} : {joueur.jetons} jetons")
 
     def __repr__(self):
-        return f"Table(Pot: {self.pot}, Communautaires: {self.cartes_communautaires})"
+        return f"Table(Pot: {self.pot}, communes: {self.cartes_communes})"
