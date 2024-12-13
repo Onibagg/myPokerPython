@@ -37,7 +37,7 @@ class Table:
 
                 print(f"Pot actuel : {self.pot} | Mise actuelle : {self.mise_actuelle}")
                 print(f"{joueur.nom}, vous avez {joueur.jetons} jetons.")
-                action = input("Action (check, miser, suivre, relancer, se_coucher) : ").lower()
+                action = input("Action (check, miser, suivre, relancer, fold) : ").lower()
 
                 if action == "check":
                     checks_consecutifs += 1
@@ -82,8 +82,8 @@ class Table:
                         else:
                             print("La relance doit être supérieure à 0.")
 
-                elif action == "se_coucher":
-                    joueur.se_coucher()
+                elif action == "fold":
+                    joueur.fold()
                     joueurs_actifs.remove(joueur)
 
                 else:

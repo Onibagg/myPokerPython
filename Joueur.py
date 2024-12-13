@@ -14,7 +14,7 @@ class Joueur:
         self.jetons -= montant
         return montant
 
-    def se_coucher(self):
+    def fold(self):
         self.actif = False
 
     def ajouter_cartes(self, cartes):
