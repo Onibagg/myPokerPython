@@ -51,6 +51,7 @@ def jouer_partie():
     continuer = True
     while continuer:
         table.melanger_paquet()
+        table.appliquer_blinds()
         table.distribuer_cartes()
 
         print_event("Cartes distribuées !")
@@ -97,3 +98,4 @@ def jouer_partie():
             print_success("----------------------------------------------------------------")
         else:
             print_success("Un nouveau tour commence !")
+            table.small_blind_value += 10
