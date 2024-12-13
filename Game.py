@@ -2,7 +2,6 @@ from treys import Card, Evaluator
 from Table import Table
 from Joueur import Joueur
 
-# Define ASCII escape codes for colors
 RED = '\033[91m'
 GREEN = '\033[92m'
 YELLOW = '\033[93m'
@@ -27,7 +26,6 @@ def print_bright(message):
     print(BRIGHT + message + RESET)
 
 def jouer_partie():
-    # Initialisation
     table = Table()
     table.melanger_paquet()
 
@@ -60,7 +58,6 @@ def jouer_partie():
             if joueur.actif:
                 print_bright(f"{joueur.nom} : {', '.join(map(str, joueur.main))}")
 
-        # Phases du jeu
         phases = [("Flop", 3), ("Turn", 1), ("River", 1)]
         for nom_phase, nombre_cartes in phases:
             if len([joueur for joueur in table.joueurs if joueur.actif]) == 1:
@@ -70,14 +67,12 @@ def jouer_partie():
             print(BOLD + "Cartes communes : " + RESET + ', '.join(map(str, table.cartes_communes)))
             table.tour_de_mise()
 
-        # Vérification pour gagnant unique
         joueurs_actifs = [joueur for joueur in table.joueurs if joueur.actif]
         if len(joueurs_actifs) == 1:
             gagnant = joueurs_actifs[0].nom
             print_success(f"Tous les autres joueurs se sont couchés. {gagnant} remporte le pot !")
             table.distribuer_pot(gagnant)
         else:
-            # Détermination du gagnant
             evaluator = Evaluator()
             mains = {}
             for joueur in table.joueurs:
@@ -94,7 +89,6 @@ def jouer_partie():
         table.afficher_jetons_joueurs()
         table.nettoyer_table()
 
-        # Vérification pour un nouveau tour
         joueurs_actifs = [joueur for joueur in table.joueurs if joueur.jetons > 0]
         if len(joueurs_actifs) <= 1:
             continuer = False
